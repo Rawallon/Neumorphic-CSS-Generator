@@ -1,0 +1,60 @@
+.box {
+  border-radius: var(--radius);
+  background: linear-gradient(
+    var(--angle),
+    var(--backgroundFirst),
+    var(--backgroundSecond)
+  );
+  width: var(--size);
+  height: var(--size);
+  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--intensityD),
+    var(--positionXOpposite) var(--positionYOpposite) var(--blur)
+      var(--intensityL);
+}
+
+.pressed {
+  box-shadow: inset var(--positionX) var(--positionY) var(--blur)
+      var(--intensityD),
+    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur)
+      var(--intensityL);
+}
+
+.preview button{
+  border: 0;
+  background: #000;
+  width: 40px;
+  height: 40px;
+  transition: all .2s;
+}
+
+.leftU{
+  clip-path: polygon(100% 0, 0% 100%, 0 0);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.leftD{
+  clip-path: polygon(0 100%, 0 0, 100% 100%);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.rightU{
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  position: absolute;
+  right: 0;
+  top: 0; 
+}
+
+.rightD{
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  position: absolute;
+  right: 0;
+  bottom: 0; 
+}
+
+.leftU button{
+  clip-path: polygon(100% 0, 0% 100%, 0 0);
+}

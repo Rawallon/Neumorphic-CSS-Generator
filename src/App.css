@@ -1,38 +1,217 @@
-.App {
-  text-align: center;
+/* :root{
+  --angle: 145deg;
+  --size: 50px;
+  --radius: 15px;
+  --background: #efeeee;
+  --backgroundFirst: #efeeee;
+  --backgroundSecond: #efeeee;
+  --distance: 20px;
+  --intensityL: #efeeee;
+  --intensityD: #efeeee;
+  --blur: 60px;
+  --positionX:20px;
+  --positionY:20px;
+  --positionXOpposite:-20px;
+  --positionYOpposite:-20px;
+} */
+*{
+  box-sizing: border-box;
+}
+button{outline: none; cursor: pointer;}
+body{
+  height: 100vh;
+  width: 100vw;
+  background: var(--background);
+  display: grid;
+  align-content: center;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.conf{
   display: flex;
   flex-direction: column;
+  padding: 30px 30px;
+  border-radius: 30px;
+  text-align: left;
+  position: relative;
+  border: 1px rgba(255, 255, 255, 0.5) solid;
+  box-shadow: inset -1px -1px 5px rgba(209, 205, 199, 0.66),
+  inset 6px 6px 5px rgba(209, 205, 199, 0.66),
+    -6px -6px 16px rgba(255, 255, 255, 0.66),
+    6px 6px 16px rgba(209, 205, 199, 0.66);
+}
+.App {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+.row{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 10fr 1fr;
+  justify-content: center;
+}
+label{ display: block; margin: 10px 5px; text-transform: capitalize; line-height: 0.5em;margin-top: 1em; }
+
+.code span{  color: #3191c9; }
+.code{
+  border-radius: 15px;
+  padding: 15px 15px;
+  margin-top: 20px;
+  color: #383D40;
+  line-height: 1em;
+}
+.neu{
+  border: 1px rgba(255, 255, 255, 0.4) solid;
+  box-shadow: -3px -3px 11px rgba(255, 255, 255, 0.66),
+  3px 3px 11px rgba(209, 205, 199, 0.66);
+}
+
+.preview{
+  position: relative;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.stat{
+  text-align: center;
+  width: 100%;
+  display: grid;
+  align-content: center;
+  font-weight: 700;
+  font-size: .7em;
+  line-height: 1em;
+  border-radius: 10px;
+  grid-row: 2;
+  background: #3191c9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+input[type=range]:hover label,input[type=range]:hover + label,input[type=range]:hover > label {
+  color: red;
+}
+
+.shape-switch button { margin-top: 20px; width: 50%; }
+.shape-switch{
+  grid-column: 1/3;
+  grid-row: 1/3;
+  display: flex;  
+}
+.shape-switch > svg{
+  width: 100%;
+height: auto;
+}
+.active > svg { stroke-opacity: .6;}
+.active{
+  background: rgba(255, 255, 255, 0.4);
+  transition: all .2s;
+  outline: none;
+  border: 1px rgba(255, 255, 255, 0.4) solid;
+  box-shadow: inset -1px -1px 5px rgba(209, 205, 199, 0.66),
+  inset 6px 6px 5px rgba(209, 205, 199, 0.66),
+    -6px -6px 16px rgba(255, 255, 255, 0.66),
+    6px 6px 16px rgba(209, 205, 199, 0.66);
+}
+/* slider  */
+/* please gawd help meeew */
+input[type=range].slider {
+  grid-row: 2;
+
+  border-radius: 20px;
+  margin: 0px 10px;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range].slider:focus {
+  outline: none;
+}
+input[type=range].slider::-webkit-slider-runnable-track {
+  border-radius: 10px;
+  background: #3191c9;
+  border: 0;
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+}
+input[type=range].slider::-webkit-slider-thumb {
+  overflow: hidden;
+  border-top: var(--background) 2px solid;
+  margin-top: 0px;
+  width: 17px;
+  height: 20px;
+  background: var(--background);
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range].slider:focus::-webkit-slider-runnable-track {
+  background: #3191c9;
+}
+input[type=range].slider::-moz-range-track {
+  border-radius: 15px;
+  background: #3191c9;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+input[type=range].slider::-moz-range-thumb {
+  overflow: hidden;
+  border-top: var(--background) 2px solid;
+  border-radius: 0;
+  margin-top: 0px;
+  width: 17px;
+  height: 20px;
+  background: var(--background);
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range].slider::-ms-track {
+  background: #3191c9;
+  border-color: transparent;
+  border-width: 0px 0;
+  color: transparent;
+  width: 100%;
+  height: 32px;
+  cursor: pointer;
+}
+input[type=range].slider::-ms-fill-lower {
+  background: #3191c9;
+  border: 0;
+}
+input[type=range].slider::-ms-fill-upper {
+  background: #3191c9;
+  border: 0;
+}
+input[type=range].slider::-ms-thumb {
+  overflow: hidden;
+  border-top: var(--background) 2px solid;
+  border-radius: 0;
+  margin-top: 0px;
+  width: 17px;
+  height: 20px;
+  background: var(--background);
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range].slider:focus::-ms-fill-lower {
+  background: #3191c9;
+}
+input[type=range].slider:focus::-ms-fill-upper {
+  background: #3191c9;
+}
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the vertical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type=range].slider {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
