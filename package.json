@@ -1,5 +1,6 @@
 {
-  "name": "react-neumo",
+  "name": "neumorphic-css-generator",
+  "description": "An app that helps you generates CSS to create UI in the Neumorphic/Neomorphic style.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

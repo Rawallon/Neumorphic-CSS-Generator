@@ -25,7 +25,7 @@ function App() {
   const [dist, setDist] = useState(20);
   const [intensity, setIntensity] = useState(0.15);
   const [blur, setBlur] = useState(60);
-  const [background, setBackground] = useState("#efeeee");
+  const [background, setBackground] = useState("#000");
   const [bgInput, setBgInput] = useState(background);
   const [shape, setShape] = useState(0);
   const [angle, setAngle] = useState(0);
@@ -85,10 +85,25 @@ function App() {
       "--intensityD",
       createShades(background, intensity * -1)
     );
+    document.documentElement.style.setProperty(
+      "--intensityS",
+      createShades(background, (intensity - 0.7)  * -1)
+    );
+    document.documentElement.style.setProperty(
+      "--intensityB",
+      createShades(background, intensity - 0.15 )
+    );
+    if(background.toString().charAt(1) == "1" || background.toString().charAt(1) == "0" )
+    document.documentElement.style.setProperty("--intensityBaa", "#fff");
+    else if(background.toString().charAt(1) == "f" || background.toString().charAt(1) == "e"  || background.toString().charAt(1) == "d"  || background.toString().charAt(1) == "b" )
+    document.documentElement.style.setProperty("--intensityBaa", "#000");
+    else
+    document.documentElement.style.setProperty("--intensityBaa", createShades(background, 0.7));
     
   }, [background, dist, intensity, blur, shape]);
 
-
+  
+  
   useEffect(() => {
 
     switch (angle) {

@@ -51,6 +51,7 @@ export const Configurator: React.FC<Props> = ({
     if (nSize >= 5 && nSize <= 50) setDist(nSize);
   }, [size, setDist]);
 
+
   return (
     <div className="conf">
       <div className="row">
@@ -61,7 +62,7 @@ export const Configurator: React.FC<Props> = ({
           id="head"
           name="head"
           value={bg}
-          onChange={(e) => setBg(e.target.value)}
+          onChange={(e) => {setBg(e.target.value); setBgInput(e.target.value);}}
         ></input>
         <input
           type="text"
@@ -72,7 +73,7 @@ export const Configurator: React.FC<Props> = ({
         ></input>
       </div>
       <div className="row">
-        <label htmlFor="size">size</label>
+        <label className="lbl" htmlFor="size">size</label>
         <input
           className="slider "
           id="size"
@@ -85,7 +86,7 @@ export const Configurator: React.FC<Props> = ({
         <span className="stat">{size}px</span>
       </div>
       <div className="row">
-        <label htmlFor="radius">radius</label>
+        <label className="lbl" htmlFor="radius">radius</label>
         <input
           className="slider "
           id="radius"
@@ -98,7 +99,7 @@ export const Configurator: React.FC<Props> = ({
         <span className="stat">{radius}px</span>
       </div>
       <div className="row">
-        <label htmlFor="dist">dist</label>
+        <label className="lbl" htmlFor="dist">distance</label>
         <input
           className="slider "
           id="dist"
@@ -112,7 +113,7 @@ export const Configurator: React.FC<Props> = ({
       </div>
 
       <div className="row">
-        <label htmlFor="dist">intensity</label>
+        <label className="lbl" htmlFor="dist">strenght</label>
         <input
           className="slider "
           id="dist"
@@ -127,7 +128,7 @@ export const Configurator: React.FC<Props> = ({
       </div>
 
       <div className="row">
-        <label htmlFor="dist">blur</label>
+        <label className="lbl" htmlFor="dist">blur</label>
         <input
           className="slider "
           id="dist"
@@ -142,7 +143,7 @@ export const Configurator: React.FC<Props> = ({
 
       <div className="row">
         <div className="shape-switch">
-          <button className={shape === 0 ? "active" : "neu"} onClick={() => setShape(0)} data-shape="0" name="flat" title="Flat">
+          <button className={shape === 0? "active" : ""} onClick={() => setShape(0)} data-shape="0" name="flat" title="Flat">
             <svg
               viewBox="0 0 145 24"
               fill="none"
@@ -156,7 +157,7 @@ export const Configurator: React.FC<Props> = ({
               ></path>
             </svg>
           </button>
-          <button className={shape === 1 ? "active" : "neu"} onClick={() => setShape(1)} data-shape="1" name="pressed" title="Pressed">
+          <button className={shape === 1? "active" : ""} onClick={() => setShape(1)} data-shape="1" name="pressed" title="Pressed">
             <svg
               viewBox="0 0 145 24"
               fill="none"
@@ -171,7 +172,7 @@ export const Configurator: React.FC<Props> = ({
             </svg>
           </button>
 
-          <button className={shape === 2 ? "active" : "neu"} onClick={() => setShape(2)} data-shape="2" name="concave" title="Concave">
+          <button className={shape === 2? "active" : ""} onClick={() => setShape(2)} data-shape="2" name="concave" title="Concave">
             <svg
               viewBox="0 0 145 24"
               
@@ -186,7 +187,7 @@ export const Configurator: React.FC<Props> = ({
               ></path>
             </svg>
           </button>
-          <button className={shape === 3 ? "active" : "neu"} onClick={() => setShape(3)} data-shape="3" name="convex" title="Convex">
+          <button className={shape === 3? "active" : ""} onClick={() => setShape(3)} data-shape="3" name="convex" title="Convex">
             <svg
               viewBox="0 0 145 33"
               fill="none"

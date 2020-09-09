@@ -1,4 +1,5 @@
 .box {
+  transition: box-shadow .3s;
   border-radius: var(--radius);
   background: linear-gradient(
     var(--angle),
@@ -21,7 +22,7 @@
 
 .preview button{
   border: 0;
-  background: #000;
+  background: var(--intensityS);
   width: 40px;
   height: 40px;
   transition: all .2s;

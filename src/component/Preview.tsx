@@ -25,10 +25,10 @@ export const Preview: React.FC<props> = ({
   }, [size, radius]);
   return (
     <div className="preview">
-      <button className={`leftU${angle === 0 ? " active" : ""}`} onClick={() => setAngle(0)}></button>
-      <button className={`rightU${angle === 1 ? " active" : ""}`} onClick={() => setAngle(1)}></button>
-      <button className={`rightD${angle === 2 ? " active" : ""}`} onClick={() => setAngle(2)}></button>
-      <button className={`leftD${angle === 3 ? " active" : ""}`} onClick={() => setAngle(3)}></button>
+      <button className={`leftU${angle === 0 ? " activeA" : ""}`} onClick={() => setAngle(0)}></button>
+      <button className={`rightU${angle === 1 ? " activeA" : ""}`} onClick={() => setAngle(1)}></button>
+      <button className={`rightD${angle === 2 ? " activeA" : ""}`} onClick={() => setAngle(2)}></button>
+      <button className={`leftD${angle === 3 ? " activeA" : ""}`} onClick={() => setAngle(3)}></button>
       <div className={`box${shape === 3 ? " pressed" : ""}`}></div>
     </div>
   );
