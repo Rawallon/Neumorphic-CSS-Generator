@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Slider from "./Slider";
+
 interface Props {
   bg: string;
   bgGF: string;
@@ -39,8 +41,8 @@ export const Configurator: React.FC<Props> = ({
   setBlur,
   colors,
   shape,
-  setShape
-}) => {
+  setShape,
+}: Props) => {
   useEffect(() => {
     let nDist = dist * 2;
     if (nDist >= 5 && nDist <= 50) setBlur(nDist);
@@ -50,7 +52,6 @@ export const Configurator: React.FC<Props> = ({
     let nSize = Math.floor(size / 10);
     if (nSize >= 5 && nSize <= 50) setDist(nSize);
   }, [size, setDist]);
-
 
   return (
     <div className="conf">
@@ -62,7 +63,10 @@ export const Configurator: React.FC<Props> = ({
           id="head"
           name="head"
           value={bg}
-          onChange={(e) => {setBg(e.target.value); setBgInput(e.target.value);}}
+          onChange={(e) => {
+            setBg(e.target.value);
+            setBgInput(e.target.value);
+          }}
         ></input>
         <input
           type="text"
@@ -73,91 +77,76 @@ export const Configurator: React.FC<Props> = ({
         ></input>
       </div>
       <div className="row">
-        <label className="lbl" htmlFor="size">size</label>
-        <input
-          className="slider "
-          id="size"
-          type="range"
-          min="10"
-          max="400"
+        <Slider
+          title="size"
           value={size}
-          onChange={(e) => setSize(Number(e.target.value))}
-        ></input>
-        <span className="stat">{size}px</span>
+          onChange={setSize}
+          min={10}
+          max={400}
+        />
       </div>
       <div className="row">
-        <label className="lbl" htmlFor="radius">radius</label>
-        <input
-          className="slider "
-          id="radius"
-          type="range"
-          min="0"
-          max={size / 2}
+        <Slider
+          title="radius"
           value={radius}
-          onChange={(e) => setRadius(Number(e.target.value))}
-        ></input>
-        <span className="stat">{radius}px</span>
+          onChange={setRadius}
+          min={0}
+          max={size / 2}
+        />
       </div>
       <div className="row">
-        <label className="lbl" htmlFor="dist">distance</label>
-        <input
-          className="slider "
-          id="dist"
-          type="range"
-          min="5"
-          max="50"
+        <Slider
+          title="distance"
           value={dist}
-          onChange={(e) => setDist(Number(e.target.value))}
-        ></input>
-        <span className="stat">{dist}px</span>
+          onChange={setDist}
+          min={5}
+          max={50}
+        />
       </div>
-
       <div className="row">
-        <label className="lbl" htmlFor="dist">strenght</label>
-        <input
-          className="slider "
-          id="dist"
-          type="range"
-          step="0.01"
-          min="0.01"
-          max="0.6"
+        <Slider
+          title="strength"
           value={intensity}
-          onChange={(e) => setIntensity(Number(e.target.value))}
-        ></input>
-        <span className="stat">{intensity}</span>
+          onChange={setIntensity}
+          step={0.01}
+          min={0.01}
+          max={0.6}
+          px={false}
+        />
       </div>
-
       <div className="row">
-        <label className="lbl" htmlFor="dist">blur</label>
-        <input
-          className="slider "
-          id="dist"
-          type="range"
-          min="0"
-          max="100"
+        <Slider
+          title="blur"
           value={blur}
-          onChange={(e) => setBlur(Number(e.target.value))}
-        ></input>
-        <span className="stat">{blur}px</span>
+          onChange={setBlur}
+          min={0}
+          max={100}
+        />
+        <label className="lbl" htmlFor="dist">
+          blur
+        </label>
       </div>
 
       <div className="row">
         <div className="shape-switch">
-          <button className={shape === 0? "active" : ""} onClick={() => setShape(0)} data-shape="0" name="flat" title="Flat">
-            <svg
-              viewBox="0 0 145 24"
-              fill="none"
-              stroke="white"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145"
-                stroke="inherit"
-                strokeWidth="6"
-              ></path>
+          <button
+            className={shape === 0 ? "active" : ""}
+            onClick={() => setShape(0)}
+            data-shape="0"
+            name="flat"
+            title="Flat"
+          >
+            <svg viewBox="0 0 145 24" fill="none" stroke="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145" stroke="inherit"strokeWidth="6"></path>
             </svg>
           </button>
-          <button className={shape === 1? "active" : ""} onClick={() => setShape(1)} data-shape="1" name="pressed" title="Pressed">
+          <button
+            className={shape === 1 ? "active" : ""}
+            onClick={() => setShape(1)}
+            data-shape="1"
+            name="pressed"
+            title="Pressed"
+          >
             <svg
               viewBox="0 0 145 24"
               fill="none"
@@ -172,10 +161,15 @@ export const Configurator: React.FC<Props> = ({
             </svg>
           </button>
 
-          <button className={shape === 2? "active" : ""} onClick={() => setShape(2)} data-shape="2" name="concave" title="Concave">
+          <button
+            className={shape === 2 ? "active" : ""}
+            onClick={() => setShape(2)}
+            data-shape="2"
+            name="concave"
+            title="Concave"
+          >
             <svg
               viewBox="0 0 145 24"
-              
               fill="none"
               stroke="white"
               xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +181,13 @@ export const Configurator: React.FC<Props> = ({
               ></path>
             </svg>
           </button>
-          <button className={shape === 3? "active" : ""} onClick={() => setShape(3)} data-shape="3" name="convex" title="Convex">
+          <button
+            className={shape === 3 ? "active" : ""}
+            onClick={() => setShape(3)}
+            data-shape="3"
+            name="convex"
+            title="Convex"
+          >
             <svg
               viewBox="0 0 145 33"
               fill="none"
@@ -209,14 +209,12 @@ export const Configurator: React.FC<Props> = ({
         {radius}px;
         <br />
         <span>background: </span>
-        {(shape === 0 || shape === 3) && ""+bg+";" }
-        {(shape === 1) && "linear-gradient(145deg, "+bgGF+", "+bgGS+");"}
-        {(shape === 2) && "linear-gradient(145deg, "+bgGS+", "+bgGF+");"}
+        {(shape === 0 || shape === 3) && "" + bg + ";"}
+        {shape === 1 && "linear-gradient(145deg, " + bgGF + ", " + bgGS + ");"}
+        {shape === 2 && "linear-gradient(145deg, " + bgGS + ", " + bgGF + ");"}
         <br />
-        
-        <span>box-shadow:</span> {dist}px {dist}px {blur}px{" "}
-        {colors.split("-")[0]},<br />-{dist}px -{dist}px {blur}px{" "}
-        {colors.split("-")[1]};<br />
+        <span>box-shadow:</span> {dist}px {dist}px {blur}px{" "}{colors.split("-")[0]},<br />
+        -{dist}px -{dist}px {blur}px{" "}{colors.split("-")[1]};<br />
       </div>
     </div>
   );

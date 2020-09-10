@@ -25,7 +25,7 @@ function App() {
   const [dist, setDist] = useState(20);
   const [intensity, setIntensity] = useState(0.15);
   const [blur, setBlur] = useState(60);
-  const [background, setBackground] = useState("#000");
+  const [background, setBackground] = useState("#efeeee");
   const [bgInput, setBgInput] = useState(background);
   const [shape, setShape] = useState(0);
   const [angle, setAngle] = useState(0);
@@ -87,62 +87,115 @@ function App() {
     );
     document.documentElement.style.setProperty(
       "--intensityS",
-      createShades(background, (intensity - 0.7)  * -1)
+      createShades(background, (intensity - 0.7) * -1)
     );
     document.documentElement.style.setProperty(
       "--intensityB",
-      createShades(background, intensity - 0.15 )
+      createShades(background, intensity - 0.15)
     );
-    if(background.toString().charAt(1) == "1" || background.toString().charAt(1) == "0" )
-    document.documentElement.style.setProperty("--intensityBaa", "#fff");
-    else if(background.toString().charAt(1) == "f" || background.toString().charAt(1) == "e"  || background.toString().charAt(1) == "d"  || background.toString().charAt(1) == "b" )
-    document.documentElement.style.setProperty("--intensityBaa", "#000");
+    if (
+      background.toString().charAt(1) === "1" ||
+      background.toString().charAt(1) === "0"
+    )
+      document.documentElement.style.setProperty("--intensityBaa", "#fff");
+    else if (
+      background.toString().charAt(1) === "f" ||
+      background.toString().charAt(1) === "e" ||
+      background.toString().charAt(1) === "d" ||
+      background.toString().charAt(1) === "b"
+    )
+      document.documentElement.style.setProperty("--intensityBaa", "#000");
     else
-    document.documentElement.style.setProperty("--intensityBaa", createShades(background, 0.7));
-    
+      document.documentElement.style.setProperty(
+        "--intensityBaa",
+        createShades(background, 0.7)
+      );
   }, [background, dist, intensity, blur, shape]);
 
-  
-  
   useEffect(() => {
-
     switch (angle) {
       case 0:
-        document.documentElement.style.setProperty("--positionX",String(dist) + "px");
-        document.documentElement.style.setProperty("--positionY",String(dist) + "px");
-        document.documentElement.style.setProperty("--positionXOpposite","-" + String(dist) + "px");
-        document.documentElement.style.setProperty("--positionYOpposite","-" + String(dist) + "px");
-        document.documentElement.style.setProperty("--angle","145deg");
+        document.documentElement.style.setProperty(
+          "--positionX",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionY",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionXOpposite",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionYOpposite",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty("--angle", "145deg");
         break;
       case 1:
-        document.documentElement.style.setProperty("--positionX","-"+String(dist) + "px");
-        document.documentElement.style.setProperty("--positionY",String(dist) + "px");
-        document.documentElement.style.setProperty("--positionXOpposite", String(dist) + "px");
-        document.documentElement.style.setProperty("--positionYOpposite","-" + String(dist) + "px");
-        document.documentElement.style.setProperty("--angle","225deg");
+        document.documentElement.style.setProperty(
+          "--positionX",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionY",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionXOpposite",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionYOpposite",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty("--angle", "225deg");
         break;
       case 2:
-        document.documentElement.style.setProperty("--positionX","-" +String(dist) + "px");
-        document.documentElement.style.setProperty("--positionY","-" +String(dist) + "px");
-        document.documentElement.style.setProperty("--positionXOpposite",String(dist) + "px");
-        document.documentElement.style.setProperty("--positionYOpposite",String(dist) + "px");
-        document.documentElement.style.setProperty("--angle","315deg");
+        document.documentElement.style.setProperty(
+          "--positionX",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionY",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionXOpposite",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionYOpposite",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty("--angle", "315deg");
         break;
       case 3:
-        document.documentElement.style.setProperty("--positionX",String(dist) + "px");
-        document.documentElement.style.setProperty("--positionY","-" + String(dist) + "px");
-        document.documentElement.style.setProperty("--positionXOpposite","-" + String(dist) + "px");
-        document.documentElement.style.setProperty("--positionYOpposite",String(dist) + "px");
-        document.documentElement.style.setProperty("--angle","45deg");
-        break;
-    
-      default:
-        document.documentElement.style.setProperty("--angle",
-          "145deg"
+        document.documentElement.style.setProperty(
+          "--positionX",
+          String(dist) + "px"
         );
+        document.documentElement.style.setProperty(
+          "--positionY",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionXOpposite",
+          "-" + String(dist) + "px"
+        );
+        document.documentElement.style.setProperty(
+          "--positionYOpposite",
+          String(dist) + "px"
+        );
+        document.documentElement.style.setProperty("--angle", "45deg");
+        break;
+
+      default:
+        document.documentElement.style.setProperty("--angle", "145deg");
         break;
     }
-  }, [angle])
+  }, [angle, dist]);
 
   const setBG = (color: string) => {
     setBgInput(color);
@@ -178,7 +231,13 @@ function App() {
         shape={shape}
         setShape={setShape}
       />
-      <Preview size={size} radius={radius} shape={shape} angle={angle} setAngle={setAngle} />
+      <Preview
+        size={size}
+        radius={radius}
+        shape={shape}
+        angle={angle}
+        setAngle={setAngle}
+      />
     </div>
   );
 }
