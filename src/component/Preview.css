@@ -1,5 +1,5 @@
 .box {
-  transition: box-shadow .3s;
+  /* transition: box-shadow .150s; */
   border-radius: var(--radius);
   background: linear-gradient(
     var(--angle),

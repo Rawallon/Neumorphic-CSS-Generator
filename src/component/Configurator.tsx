@@ -122,9 +122,6 @@ export function Configurator({
           min={0}
           max={100}
         />
-        <label className="lbl" htmlFor="dist">
-          blur
-        </label>
       </div>
 
       <div className="row">
