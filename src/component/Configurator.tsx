@@ -22,7 +22,7 @@ interface Props {
   shape: number;
   setShape: (n: number) => void;
 }
-export const Configurator: React.FC<Props> = ({
+export function Configurator({
   size,
   setSize,
   bg,
@@ -42,7 +42,7 @@ export const Configurator: React.FC<Props> = ({
   colors,
   shape,
   setShape,
-}: Props) => {
+}: Props) {
   useEffect(() => {
     let nDist = dist * 2;
     if (nDist >= 5 && nDist <= 50) setBlur(nDist);
@@ -136,8 +136,17 @@ export const Configurator: React.FC<Props> = ({
             name="flat"
             title="Flat"
           >
-            <svg viewBox="0 0 145 24" fill="none" stroke="white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145" stroke="inherit"strokeWidth="6"></path>
+            <svg
+              viewBox="0 0 145 24"
+              fill="none"
+              stroke="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145"
+                stroke="inherit"
+                strokeWidth="6"
+              ></path>
             </svg>
           </button>
           <button
@@ -213,9 +222,10 @@ export const Configurator: React.FC<Props> = ({
         {shape === 1 && "linear-gradient(145deg, " + bgGF + ", " + bgGS + ");"}
         {shape === 2 && "linear-gradient(145deg, " + bgGS + ", " + bgGF + ");"}
         <br />
-        <span>box-shadow:</span> {dist}px {dist}px {blur}px{" "}{colors.split("-")[0]},<br />
-        -{dist}px -{dist}px {blur}px{" "}{colors.split("-")[1]};<br />
+        <span>box-shadow:</span> {dist}px {dist}px {blur}px{" "}
+        {colors.split("-")[0]},<br />-{dist}px -{dist}px {blur}px{" "}
+        {colors.split("-")[1]};<br />
       </div>
     </div>
   );
-};
+}
