@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Neumorphic-CSS-Generator/static/css/main.f2b1e9a8.chunk.css",
+    "main.js": "/Neumorphic-CSS-Generator/static/js/main.a30e2541.chunk.js",
+    "main.js.map": "/Neumorphic-CSS-Generator/static/js/main.a30e2541.chunk.js.map",
+    "runtime-main.js": "/Neumorphic-CSS-Generator/static/js/runtime-main.1653891f.js",
+    "runtime-main.js.map": "/Neumorphic-CSS-Generator/static/js/runtime-main.1653891f.js.map",
+    "static/js/2.5e73733c.chunk.js": "/Neumorphic-CSS-Generator/static/js/2.5e73733c.chunk.js",
+    "static/js/2.5e73733c.chunk.js.map": "/Neumorphic-CSS-Generator/static/js/2.5e73733c.chunk.js.map",
+    "index.html": "/Neumorphic-CSS-Generator/index.html",
+    "precache-manifest.3076ceb68a594c36c1c9e0f0284a8283.js": "/Neumorphic-CSS-Generator/precache-manifest.3076ceb68a594c36c1c9e0f0284a8283.js",
+    "service-worker.js": "/Neumorphic-CSS-Generator/service-worker.js",
+    "static/css/main.f2b1e9a8.chunk.css.map": "/Neumorphic-CSS-Generator/static/css/main.f2b1e9a8.chunk.css.map",
+    "static/js/2.5e73733c.chunk.js.LICENSE.txt": "/Neumorphic-CSS-Generator/static/js/2.5e73733c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1653891f.js",
+    "static/js/2.5e73733c.chunk.js",
+    "static/css/main.f2b1e9a8.chunk.css",
+    "static/js/main.a30e2541.chunk.js"
+  ]
+}
