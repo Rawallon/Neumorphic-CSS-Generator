@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b5e76c10d0131465f775e8a9c228f560",
+    "revision": "b9d2b66d9245a08343e5161816e510d4",
     "url": "/Neumorphic-CSS-Generator/index.html"
   },
   {
-    "revision": "aa32b99b75ccdce826f2",
-    "url": "/Neumorphic-CSS-Generator/static/css/main.f2b1e9a8.chunk.css"
+    "revision": "6c2adfd991205a364517",
+    "url": "/Neumorphic-CSS-Generator/static/css/main.1551124b.chunk.css"
   },
   {
     "revision": "18aed12c36c0b311dbac",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Neumorphic-CSS-Generator/static/js/2.5e73733c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "aa32b99b75ccdce826f2",
-    "url": "/Neumorphic-CSS-Generator/static/js/main.a30e2541.chunk.js"
+    "revision": "6c2adfd991205a364517",
+    "url": "/Neumorphic-CSS-Generator/static/js/main.ec23be8e.chunk.js"
   },
   {
     "revision": "3de21c9dbbf6c6c6a9ea",
