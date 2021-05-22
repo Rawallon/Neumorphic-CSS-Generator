@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-interface Props {
+interface SliderProps {
   title: string;
   value: any;
   onChange: (n: number) => void;
@@ -18,7 +18,7 @@ export default function Slider({
   max,
   step = 1,
   px = true,
-}: Props) {
+}: SliderProps) {
   return (
     <>
       <label className="lbl" htmlFor="size">
@@ -32,10 +32,9 @@ export default function Slider({
         max={max}
         step={step}
         value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-      ></input>
+        onChange={(e) => onChange(Number(e.target.value))}></input>
       <span className="stat">
-        {value} {px && "px"}
+        {value} {px && 'px'}
       </span>
     </>
   );

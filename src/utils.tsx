@@ -1,3 +1,5 @@
+export const isValidColor = (hex: string) => /^#[0-9A-F]{6}$/i.test(hex);
+
 export function createShades(col: string, amt: number): string {
   let hex: string = String(col).replace(/[^0-9a-f]/gi, '');
   if (hex.length < 6) {

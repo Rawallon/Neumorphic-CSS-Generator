@@ -116,7 +116,7 @@ body {
 
 button>svg {
   filter: brightness(150%);
-  stroke: var(--intensityD);
+  stroke: var(--intensityS);
   padding: 10px 20px;
   width: 100%;
 }
