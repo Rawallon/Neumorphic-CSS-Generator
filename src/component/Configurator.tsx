@@ -15,15 +15,16 @@ interface Props {
   setShape: (value: number) => void;
 }
 export function Configurator({ angle, shape, setShape }: Props) {
+  const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [size, setSize] = useState(300);
   const [radius, setRadius] = useState(50);
   const [dist, setDist] = useState(20);
   const [intensity, setIntensity] = useState(0.15);
   const [blur, setBlur] = useState(60);
   const [background, setBackground] = useState('#efeeee');
-  const [bgInput, setBgInput] = useState(background);
 
   useEffect(() => {
+    inputRef.current.value = background;
     var bgFirst, bgSecond;
     if (shape === 0) {
       bgFirst = background;
@@ -43,7 +44,6 @@ export function Configurator({ angle, shape, setShape }: Props) {
       positionYOpposite,
       angleDeg,
     } = getShadowSide(dist, angle);
-
     document.documentElement.style.cssText = `
     --background: ${background};
     --backgroundFirst: ${bgFirst};
@@ -62,10 +62,9 @@ export function Configurator({ angle, shape, setShape }: Props) {
     --intensityB: ${createShades(background, intensity - 0.15)};
     --intensityBaa: ${getFontColor(background)}
     `;
-  }, [background, dist, intensity, blur, shape, size, radius, angle]);
+  }, [background, dist, intensity, blur, shape, size, radius, angle, inputRef]);
 
   function setBgHandler(color: string) {
-    setBgInput(color);
     if (isValidColor(color)) {
       setBackground(color);
     }
@@ -96,7 +95,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
           type="text"
           id="head"
           name="head"
-          value={bgInput}
+          ref={inputRef}
           onChange={(e) => setBgHandler(e.target.value)}></input>
       </div>
       <div className="row">
