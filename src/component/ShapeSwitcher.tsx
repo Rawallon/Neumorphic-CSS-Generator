@@ -80,3 +80,5 @@ export default function ShapeSwitcher({ shape, setShape }: ShapeSwitcherProps) {
     </div>
   );
 }
+
+export const MemoShapeSwitcher = React.memo(ShapeSwitcher);

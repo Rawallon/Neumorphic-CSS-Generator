@@ -44,3 +44,5 @@ export default function CodeSnippet({
     </div>
   );
 }
+
+export const MemoCodeSnippet = React.memo(CodeSnippet)

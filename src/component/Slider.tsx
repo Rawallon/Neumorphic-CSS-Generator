@@ -39,3 +39,5 @@ export default function Slider({
     </>
   );
 }
+
+export const MemoSlider = React.memo(Slider);

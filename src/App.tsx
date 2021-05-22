@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Configurator } from './component/Configurator';
+import { MemoConfigurator } from './component/Configurator';
 import { Preview } from './component/Preview';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <Configurator angle={angle} shape={shape} setShape={setShape} />
+      <MemoConfigurator angle={angle} shape={shape} setShape={setShape} />
       <Preview shape={shape} angle={angle} setAngle={setAngle} />
     </div>
   );

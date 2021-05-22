@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   createShades,
   getFontColor,
   getShadowSide,
   isValidColor,
 } from '../utils';
-import ShapeSwitcher from './ShapeSwitcher';
-import CodeSnippet from './CodeSnippet';
-import Slider from './Slider';
+import { MemoShapeSwitcher } from './ShapeSwitcher';
+import { MemoCodeSnippet } from './CodeSnippet';
+import { MemoSlider } from './Slider';
 
 interface Props {
   angle: number;
@@ -99,7 +99,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
           onChange={(e) => setBgHandler(e.target.value)}></input>
       </div>
       <div className="row">
-        <Slider
+        <MemoSlider
           title="size"
           value={size}
           onChange={setSize}
@@ -108,7 +108,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
         />
       </div>
       <div className="row">
-        <Slider
+        <MemoSlider
           title="radius"
           value={radius}
           onChange={setRadius}
@@ -117,7 +117,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
         />
       </div>
       <div className="row">
-        <Slider
+        <MemoSlider
           title="distance"
           value={dist}
           onChange={setDist}
@@ -126,7 +126,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
         />
       </div>
       <div className="row">
-        <Slider
+        <MemoSlider
           title="strength"
           value={intensity}
           onChange={setIntensity}
@@ -137,7 +137,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
         />
       </div>
       <div className="row">
-        <Slider
+        <MemoSlider
           title="blur"
           value={blur}
           onChange={setBlur}
@@ -146,9 +146,9 @@ export function Configurator({ angle, shape, setShape }: Props) {
         />
       </div>
 
-      <ShapeSwitcher shape={shape} setShape={setShape} />
+      <MemoShapeSwitcher shape={shape} setShape={setShape} />
 
-      <CodeSnippet
+      <MemoCodeSnippet
         radius={radius}
         shape={shape}
         background={background}
@@ -159,3 +159,5 @@ export function Configurator({ angle, shape, setShape }: Props) {
     </div>
   );
 }
+
+export const MemoConfigurator = React.memo(Configurator);
