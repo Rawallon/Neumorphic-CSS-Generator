@@ -13,3 +13,61 @@ export function createShades(col: string, amt: number): string {
   }
   return rgb;
 }
+
+export function getFontColor(hex: string): string {
+  const hexChar = hex.toString().charAt(1);
+  if (hexChar === '1' || hexChar === '0') {
+    return '#fffff';
+  } else if (hexChar === 'f' || hexChar === 'e' || hexChar === 'd') {
+    return '#00000';
+  } else {
+    return createShades(hex, 0.7);
+  }
+}
+interface getShadowSideReturn {
+  positionX: number;
+  positionY: number;
+  positionXOpposite: number;
+  positionYOpposite: number;
+  angleDeg: string;
+}
+export function getShadowSide(
+  dist: number,
+  angle: number,
+): getShadowSideReturn {
+  switch (angle) {
+    default:
+    case 0:
+      return {
+        positionX: dist,
+        positionY: dist,
+        positionXOpposite: dist * -1,
+        positionYOpposite: dist * -1,
+        angleDeg: '145deg',
+      };
+    case 1:
+      return {
+        positionX: dist * -1,
+        positionY: dist,
+        positionXOpposite: dist,
+        positionYOpposite: dist * -1,
+        angleDeg: '225deg',
+      };
+    case 2:
+      return {
+        positionX: dist * -1,
+        positionY: dist * -1,
+        positionXOpposite: dist,
+        positionYOpposite: dist,
+        angleDeg: '315deg',
+      };
+    case 3:
+      return {
+        positionX: dist,
+        positionY: dist * -1,
+        positionXOpposite: dist * -1,
+        positionYOpposite: dist,
+        angleDeg: '45deg',
+      };
+  }
+}
