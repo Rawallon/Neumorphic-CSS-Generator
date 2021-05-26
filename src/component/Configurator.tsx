@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   createShades,
+  getColorVariations,
   getFontColor,
   getShadowSide,
   isValidColor,
@@ -25,17 +26,10 @@ export function Configurator({ angle, style, setStyle }: Props) {
 
   useEffect(() => {
     inputRef.current.value = selectedColor;
-    var bgFirst, bgSecond;
-    if (style === 0) {
-      bgFirst = selectedColor;
-      bgSecond = selectedColor;
-    } else if (style === 1) {
-      bgFirst = createShades(selectedColor, 0.1 * -1);
-      bgSecond = createShades(selectedColor, 0.1);
-    } else if (style === 2) {
-      bgFirst = createShades(selectedColor, 0.1);
-      bgSecond = createShades(selectedColor, 0.1 * -1);
-    }
+    const { selectedTop, selectedBottom } = getColorVariations(
+      selectedColor,
+      style,
+    );
 
     const {
       positionX,
@@ -46,8 +40,8 @@ export function Configurator({ angle, style, setStyle }: Props) {
     } = getShadowSide(distance, angle);
     document.documentElement.style.cssText = `
     --selectedColor: ${selectedColor};
-    --selectedColorTop: ${bgFirst};
-    --selectedColorBottom: ${bgSecond};
+    --selectedColorTop: ${selectedTop};
+    --selectedColorBottom: ${selectedBottom};
     --blur: ${blur}px;
     --angle: ${angleDeg};
     --positionX: ${positionX}px;

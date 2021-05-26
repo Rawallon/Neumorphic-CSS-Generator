@@ -73,3 +73,21 @@ export function getShadowSide(
       };
   }
 }
+
+export function getColorVariations(selectedColor: string, style: number): any {
+  switch (style) {
+    default:
+    case 0:
+      return { selectedTop: selectedColor, selectedBottom: selectedColor };
+    case 1:
+      return {
+        selectedTop: createShades(selectedColor, 0.1 * -1),
+        selectedBottom: createShades(selectedColor, 0.1),
+      };
+    case 2:
+      return {
+        selectedTop: createShades(selectedColor, 0.1),
+        selectedBottom: createShades(selectedColor, 0.1 * -1),
+      };
+  }
+}
