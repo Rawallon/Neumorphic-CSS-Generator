@@ -5,12 +5,12 @@ import { Preview } from './component/Preview';
 
 function App() {
   const [angle, setAngle] = useState(0);
-  const [shape, setShape] = useState(0);
+  const [style, setStyle] = useState(0);
 
   return (
     <div className="App">
-      <MemoConfigurator angle={angle} shape={shape} setShape={setShape} />
-      <Preview shape={shape} angle={angle} setAngle={setAngle} />
+      <MemoConfigurator angle={angle} style={style} setStyle={setStyle} />
+      <Preview style={style} angle={angle} setAngle={setAngle} />
     </div>
   );
 }

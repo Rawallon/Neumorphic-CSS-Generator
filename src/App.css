@@ -2,12 +2,12 @@
   --angle: 145deg;
   --size: 50px;
   --radius: 15px;
-  --background: #efeeee;
-  --backgroundFirst: #efeeee;
-  --backgroundSecond: #efeeee;
+  --selectedColor: #efeeee;
+  --selectedColorTop: #efeeee;
+  --selectedColorBottom: #efeeee;
   --distance: 20px;
-  --intensityL: #efeeee;
-  --intensityD: #efeeee;
+  --shadowLight: #efeeee;
+  --shadowDark: #efeeee;
   --blur: 60px;
   --positionX:20px;
   --positionY:20px;
@@ -24,30 +24,32 @@ button {
 }
 
 label {
-  color: var(--intensityBaa);
-
+  color: var(--fontColor);
+  margin-top: 5px;
+  z-index: 1;
+  text-transform: capitalize;
 }
 
 body {
   height: 100vh;
   width: 100vw;
-  background: var(--background);
+  background: var(--selectedColor);
   display: grid;
   align-content: center;
   justify-content: center;
 }
 
-.conf {
+.configurator {
   display: flex;
   flex-direction: column;
   padding: 30px 30px;
   border-radius: 30px;
   text-align: left;
   position: relative;
-  border: 1px var(--intensityB) solid;
+  border: 1px var(--accentSecondary) solid;
   transition: box-shadow .3s;
-  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--intensityD),
-    var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--intensityL);
+  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--shadowDark),
+    var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--shadowLight);
 }
 
 .App {
@@ -77,15 +79,15 @@ body {
   border-radius: 15px;
   padding: 15px 15px;
   margin-top: 20px;
-  color: var(--intensityBaa);
+  color: var(--fontColor);
   line-height: 1em;
 }
 
 .neu {
   transition: box-shadow .3s;
-  border: 1px var(--intensityS) solid;
-  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--intensityD),
-    var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--intensityL);
+  border: 1px var(--accentPrimary) solid;
+  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--shadowDark),
+    var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--shadowLight);
 }
 
 .preview {
@@ -97,45 +99,45 @@ body {
 
 
 
-.shape-switch button:active {
-  background: var(--intensityB);
-  box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--intensityD),
-    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--intensityL), 0 0 0 transparent, 0 0 0 transparent;
+.style-switch button:active {
+  background: var(--accentSecondary);
+  box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--shadowDark),
+    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--shadowLight), 0 0 0 transparent, 0 0 0 transparent;
 }
 
-.shape-switch button {
+.style-switch button {
   border: 0;
   border-radius: 5px;
   background: transparent;
   margin: 20px 10px;
   width: 50%;
   transition: all .3s;
-  box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent, 12px 12px 24px 0 var(--intensityD),
-    -12px -12px 24px 0 var(--intensityL);
+  box-shadow: inset 0 0 0 transparent, inset 0 0 0 transparent, 12px 12px 24px 0 var(--shadowDark),
+    -12px -12px 24px 0 var(--shadowLight);
 }
 
 button>svg {
   filter: brightness(150%);
-  stroke: var(--intensityS);
+  stroke: var(--accentPrimary);
   padding: 10px 20px;
   width: 100%;
 }
 
-.shape-switch {
+.style-switch {
   grid-column: 1/3;
   grid-row: 1/3;
   display: flex;
 }
 
-.shape-switch>svg {
+.style-switch>svg {
   width: 100%;
   height: auto;
 }
 
-.shape-switch>.active {
-  box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--intensityD),
-    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--intensityL);
-  background: var(--intensityB);
+.style-switch>.active {
+  box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--shadowDark),
+    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--shadowLight);
+  background: var(--accentSecondary); 
   z-index: -2;
 }
 
@@ -143,7 +145,7 @@ button>svg {
   filter: brightness(120%);
 }
 
-.activeA {
+.activeAngle {
   transform: scale(1.1);
   opacity: .5;
   border: 2px solid red;
@@ -151,8 +153,8 @@ button>svg {
 
 /* slider  */
 /* please gawd help meeew */
-.stat {
-  color: var(--intensityBaa);
+.value {
+  color: var(--fontColor);
   text-align: center;
   width: 100%;
   display: grid;
@@ -161,15 +163,9 @@ button>svg {
   font-size: 0.7em;
 }
 
-.lbl {
-  margin-top: 5px;
-  z-index: 1;
-  text-transform: capitalize;
-}
-
 input[type="range"] {
-  box-shadow: 6px 6px 10px var(--intensityD),
-    -6px -6px 10px var(--intensityL);
+  box-shadow: 6px 6px 10px var(--shadowDark),
+    -6px -6px 10px var(--shadowLight);
   overflow: hidden;
   z-index: 3;
   border-radius: 100px;
@@ -189,8 +185,8 @@ input[type="range"]:focus {
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 100%;
-  box-shadow: inset 6px 6px 10pxvar(--intensityD),
-    inset -6px -6px 10pxvar(--intensityL);
+  box-shadow: inset 6px 6px 10pxvar(--shadowDark),
+    inset -6px -6px 10pxvar(--shadowLight);
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -199,16 +195,16 @@ input[type="range"]::-webkit-slider-thumb {
   width: 25px;
   cursor: pointer;
   -webkit-appearance: none;
-  border: 1px solid var(--intensityS);
-  background: var(--intensityS);
-  box-shadow: -255px 0px 0px 240px var(--intensityS);
+  border: 1px solid var(--accentPrimary);
+  background: var(--accentPrimary);
+  box-shadow: -255px 0px 0px 240px var(--accentPrimary);
 }
 
 input[type="range"]::-moz-range-track {
   width: 100%;
   height: 100%;
-  box-shadow: inset 6px 6px 10pxvar(--intensityD),
-    inset -6px -6px 10pxvar(--intensityL);
+  box-shadow: inset 6px 6px 10pxvar(--shadowDark),
+    inset -6px -6px 10pxvar(--shadowLight);
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -217,16 +213,16 @@ input[type="range"]::-moz-range-thumb {
   width: 25px;
   cursor: pointer;
   -webkit-appearance: none;
-  border: 1px solid var(--intensityS);
-  background: var(--intensityS);
-  box-shadow: -255px 0px 0px 240px var(--intensityS);
+  border: 1px solid var(--accentPrimary);
+  background: var(--accentPrimary);
+  box-shadow: -255px 0px 0px 240px var(--accentPrimary);
 }
 
 input[type="range"]::-ms-track {
   width: 100%;
   height: 100%;
-  box-shadow: inset 6px 6px 10pxvar(--intensityD),
-    inset -6px -6px 10pxvar(--intensityL);
+  box-shadow: inset 6px 6px 10pxvar(--shadowDark),
+    inset -6px -6px 10pxvar(--shadowLight);
 }
 input[type="range"]::-ms-thumb {
   border-radius: 50%;
@@ -234,9 +230,9 @@ input[type="range"]::-ms-thumb {
   width: 25px;
   cursor: pointer;
   -webkit-appearance: none;
-  border: 1px solid var(--intensityS);
-  background: var(--intensityS);
-  box-shadow: -255px 0px 0px 240px var(--intensityS);
+  border: 1px solid var(--accentPrimary);
+  background: var(--accentPrimary);
+  box-shadow: -255px 0px 0px 240px var(--accentPrimary);
 }
 
 input[type="range"]:focus::-ms-fill-lower {

@@ -2,47 +2,54 @@ import React from 'react';
 import { createShades } from '../utils';
 
 interface CodeSnippetProps {
-  radius: number;
-  shape: number;
-  background: string;
+  borderRadius: number;
+  style: number;
+  selectedColor: string;
   intensity: number;
   blur: number;
-  dist: number;
+  distance: number;
 }
 
 export default function CodeSnippet({
-  radius,
-  shape,
-  background,
+  borderRadius,
+  style,
+  selectedColor,
   intensity,
   blur,
-  dist,
+  distance,
 }: CodeSnippetProps) {
-
-  function bgColor(shape: number): string {
-    switch (shape) {
+  function bgColor(style: number): string {
+    switch (style) {
       default:
       case 3:
       case 0:
-        return background;
+        return selectedColor;
       case 1:
-        return `linear-gradient(145deg, ${createShades(background,0.1 * -1,)}, ${createShades(background, 0.1)});`;
+        return `linear-gradient(145deg, ${createShades(
+          selectedColor,
+          0.1 * -1,
+        )}, ${createShades(selectedColor, 0.1)});`;
       case 2:
-        return `linear-gradient(145deg, ${createShades(background,0.1,)}, ${createShades(background, 0.1 * -1)});`;
+        return `linear-gradient(145deg, ${createShades(
+          selectedColor,
+          0.1,
+        )}, ${createShades(selectedColor, 0.1 * -1)});`;
     }
   }
   return (
     <div className="code neu">
-      <span>border-radius: </span> {radius}px;
+      <span>border-border-radius: </span> {borderRadius}px;
       <br />
-      <span>background: </span> {bgColor(shape)}
+      <span>background: </span> {bgColor(style)}
       <br />
-      <span>box-shadow:</span> {shape === 3 && 'inset'} {dist}px {dist}px {blur}px {createShades(background, intensity * -1).split('-')[0]},
+      <span>box-shadow:</span> {style === 3 && 'inset'} {distance}px {distance}
+      px {blur}px {createShades(selectedColor, intensity * -1).split('-')[0]},
       <br />
-      {shape === 3 && 'inset'} -{dist}px -{dist}px {blur}px {createShades(background, intensity).split('-')[0]};
+      {style === 3 && 'inset'} -{distance}px -{distance}px {blur}px{' '}
+      {createShades(selectedColor, intensity).split('-')[0]};
       <br />
     </div>
   );
 }
 
-export const MemoCodeSnippet = React.memo(CodeSnippet)
+export const MemoCodeSnippet = React.memo(CodeSnippet);

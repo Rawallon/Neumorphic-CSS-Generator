@@ -1,28 +1,28 @@
 .box {
-  /* transition: box-shadow .150s; */
+  transition: box-shadow .150s;
   border-radius: var(--radius);
   background: linear-gradient(
     var(--angle),
-    var(--backgroundFirst),
-    var(--backgroundSecond)
+    var(--selectedColorTop),
+    var(--selectedColorBottom)
   );
   width: var(--size);
   height: var(--size);
-  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--intensityD),
+  box-shadow: var(--positionX) var(--positionY) var(--blur) var(--shadowDark),
     var(--positionXOpposite) var(--positionYOpposite) var(--blur)
-      var(--intensityL);
+      var(--shadowLight);
 }
 
 .pressed {
   box-shadow: inset var(--positionX) var(--positionY) var(--blur)
-      var(--intensityD),
+      var(--shadowDark),
     inset var(--positionXOpposite) var(--positionYOpposite) var(--blur)
-      var(--intensityL);
+      var(--shadowLight);
 }
 
 .preview button{
   border: 0;
-  background: var(--intensityS);
+  background: var(--accentPrimary);
   width: 40px;
   height: 40px;
   transition: all .2s;

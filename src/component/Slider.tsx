@@ -21,9 +21,7 @@ export default function Slider({
 }: SliderProps) {
   return (
     <>
-      <label className="lbl" htmlFor="size">
-        {title}
-      </label>
+      <label htmlFor="size">{title}</label>
       <input
         className="slider"
         id={title}
@@ -33,7 +31,7 @@ export default function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}></input>
-      <span className="stat">
+      <span className="value">
         {value} {px && 'px'}
       </span>
     </>

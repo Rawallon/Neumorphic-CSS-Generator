@@ -1,16 +1,16 @@
 import React from 'react';
-interface ShapeSwitcherProps {
-  shape: number;
-  setShape: (param: number) => void;
+interface StyleSwitcherProps {
+  style: number;
+  setStyle: (param: number) => void;
 }
-export default function ShapeSwitcher({ shape, setShape }: ShapeSwitcherProps) {
+export default function StyleSwitcher({ style, setStyle }: StyleSwitcherProps) {
   return (
     <div className="row">
-      <div className="shape-switch">
+      <div className="style-switch">
         <button
-          className={shape === 0 ? 'active' : ''}
-          onClick={() => setShape(0)}
-          data-shape="0"
+          className={style === 0 ? 'active' : ''}
+          onClick={() => setStyle(0)}
+          data-style="0"
           name="flat"
           title="Flat">
           <svg
@@ -25,9 +25,9 @@ export default function ShapeSwitcher({ shape, setShape }: ShapeSwitcherProps) {
           </svg>
         </button>
         <button
-          className={shape === 1 ? 'active' : ''}
-          onClick={() => setShape(1)}
-          data-shape="1"
+          className={style === 1 ? 'active' : ''}
+          onClick={() => setStyle(1)}
+          data-style="1"
           name="pressed"
           title="Pressed">
           <svg
@@ -43,9 +43,9 @@ export default function ShapeSwitcher({ shape, setShape }: ShapeSwitcherProps) {
         </button>
 
         <button
-          className={shape === 2 ? 'active' : ''}
-          onClick={() => setShape(2)}
-          data-shape="2"
+          className={style === 2 ? 'active' : ''}
+          onClick={() => setStyle(2)}
+          data-style="2"
           name="concave"
           title="Concave">
           <svg
@@ -60,9 +60,9 @@ export default function ShapeSwitcher({ shape, setShape }: ShapeSwitcherProps) {
           </svg>
         </button>
         <button
-          className={shape === 3 ? 'active' : ''}
-          onClick={() => setShape(3)}
-          data-shape="3"
+          className={style === 3 ? 'active' : ''}
+          onClick={() => setStyle(3)}
+          data-style="3"
           name="convex"
           title="Convex">
           <svg
@@ -81,4 +81,4 @@ export default function ShapeSwitcher({ shape, setShape }: ShapeSwitcherProps) {
   );
 }
 
-export const MemoShapeSwitcher = React.memo(ShapeSwitcher);
+export const MemoStyleSwitcher = React.memo(StyleSwitcher);

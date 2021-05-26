@@ -5,36 +5,36 @@ import {
   getShadowSide,
   isValidColor,
 } from '../utils';
-import { MemoShapeSwitcher } from './ShapeSwitcher';
+import { MemoStyleSwitcher } from './StyleSwitcher';
 import { MemoCodeSnippet } from './CodeSnippet';
 import { MemoSlider } from './Slider';
 
 interface Props {
   angle: number;
-  shape: number;
-  setShape: (value: number) => void;
+  style: number;
+  setStyle: (value: number) => void;
 }
-export function Configurator({ angle, shape, setShape }: Props) {
+export function Configurator({ angle, style, setStyle }: Props) {
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [size, setSize] = useState(300);
-  const [radius, setRadius] = useState(50);
-  const [dist, setDist] = useState(20);
+  const [borderRadius, setBorderRadius] = useState(50);
+  const [distance, setDistance] = useState(20);
   const [intensity, setIntensity] = useState(0.15);
   const [blur, setBlur] = useState(60);
-  const [background, setBackground] = useState('#efeeee');
+  const [selectedColor, setSelectedColor] = useState('#efeeee');
 
   useEffect(() => {
-    inputRef.current.value = background;
+    inputRef.current.value = selectedColor;
     var bgFirst, bgSecond;
-    if (shape === 0) {
-      bgFirst = background;
-      bgSecond = background;
-    } else if (shape === 1) {
-      bgFirst = createShades(background, 0.1 * -1);
-      bgSecond = createShades(background, 0.1);
-    } else if (shape === 2) {
-      bgFirst = createShades(background, 0.1);
-      bgSecond = createShades(background, 0.1 * -1);
+    if (style === 0) {
+      bgFirst = selectedColor;
+      bgSecond = selectedColor;
+    } else if (style === 1) {
+      bgFirst = createShades(selectedColor, 0.1 * -1);
+      bgSecond = createShades(selectedColor, 0.1);
+    } else if (style === 2) {
+      bgFirst = createShades(selectedColor, 0.1);
+      bgSecond = createShades(selectedColor, 0.1 * -1);
     }
 
     const {
@@ -43,11 +43,11 @@ export function Configurator({ angle, shape, setShape }: Props) {
       positionXOpposite,
       positionYOpposite,
       angleDeg,
-    } = getShadowSide(dist, angle);
+    } = getShadowSide(distance, angle);
     document.documentElement.style.cssText = `
-    --background: ${background};
-    --backgroundFirst: ${bgFirst};
-    --backgroundSecond: ${bgSecond};
+    --selectedColor: ${selectedColor};
+    --selectedColorTop: ${bgFirst};
+    --selectedColorBottom: ${bgSecond};
     --blur: ${blur}px;
     --angle: ${angleDeg};
     --positionX: ${positionX}px;
@@ -55,33 +55,43 @@ export function Configurator({ angle, shape, setShape }: Props) {
     --positionXOpposite: ${positionXOpposite}px;
     --positionYOpposite: ${positionYOpposite}px;
     --size: ${size}px;
-    --radius:${radius}px;
-    --intensityL: ${createShades(background, intensity)};
-    --intensityD: ${createShades(background, intensity * -1)};
-    --intensityS: ${createShades(background, (intensity - 0.7) * -1)};
-    --intensityB: ${createShades(background, intensity - 0.15)};
-    --intensityBaa: ${getFontColor(background)}
+    --radius:${borderRadius}px;
+    --shadowLight: ${createShades(selectedColor, intensity)};
+    --shadowDark: ${createShades(selectedColor, intensity * -1)};
+    --accentPrimary: ${createShades(selectedColor, (intensity - 0.7) * -1)};
+    --accentSecondary: ${createShades(selectedColor, intensity - 0.15)};
+    --fontColor: ${getFontColor(selectedColor)} 
     `;
-  }, [background, dist, intensity, blur, shape, size, radius, angle, inputRef]);
+  }, [
+    selectedColor,
+    distance,
+    intensity,
+    blur,
+    style,
+    size,
+    borderRadius,
+    angle,
+    inputRef,
+  ]);
 
   function setBgHandler(color: string) {
     if (isValidColor(color)) {
-      setBackground(color);
+      setSelectedColor(color);
     }
   }
 
   useEffect(() => {
-    let nDist = dist * 2;
+    let nDist = distance * 2;
     if (nDist >= 5 && nDist <= 50) setBlur(nDist);
-  }, [dist, setBlur]);
+  }, [distance, setBlur]);
 
   useEffect(() => {
     let nSize = Math.floor(size / 10);
-    if (nSize >= 5 && nSize <= 50) setDist(nSize);
-  }, [size, setDist]);
+    if (nSize >= 5 && nSize <= 50) setDistance(nSize);
+  }, [size, setDistance]);
 
   return (
-    <div className="conf">
+    <div className="configurator">
       <div className="row">
         <label htmlFor="head">Color</label>
         <span></span>
@@ -89,7 +99,7 @@ export function Configurator({ angle, shape, setShape }: Props) {
           type="color"
           id="head"
           name="head"
-          value={background}
+          value={selectedColor}
           onChange={(e) => setBgHandler(e.target.value)}></input>
         <input
           type="text"
@@ -110,8 +120,8 @@ export function Configurator({ angle, shape, setShape }: Props) {
       <div className="row">
         <MemoSlider
           title="radius"
-          value={radius}
-          onChange={setRadius}
+          value={borderRadius}
+          onChange={setBorderRadius}
           min={0}
           max={size / 2}
         />
@@ -119,8 +129,8 @@ export function Configurator({ angle, shape, setShape }: Props) {
       <div className="row">
         <MemoSlider
           title="distance"
-          value={dist}
-          onChange={setDist}
+          value={distance}
+          onChange={setDistance}
           min={5}
           max={50}
         />
@@ -146,15 +156,15 @@ export function Configurator({ angle, shape, setShape }: Props) {
         />
       </div>
 
-      <MemoShapeSwitcher shape={shape} setShape={setShape} />
+      <MemoStyleSwitcher style={style} setStyle={setStyle} />
 
       <MemoCodeSnippet
-        radius={radius}
-        shape={shape}
-        background={background}
+        borderRadius={borderRadius}
+        style={style}
+        selectedColor={selectedColor}
         intensity={intensity}
         blur={blur}
-        dist={dist}
+        distance={distance}
       />
     </div>
   );
