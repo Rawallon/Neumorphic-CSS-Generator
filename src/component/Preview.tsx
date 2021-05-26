@@ -1,13 +1,9 @@
 import React from 'react';
+import { useStateContext } from '../StateContext';
 import './Preview.css';
 
-interface Props {
-  style: number;
-  angle: number;
-  setAngle: (n: number) => void;
-}
-
-export function Preview({ style, angle, setAngle }: Props) {
+export function Preview() {
+  const { angle, setAngle, style } = useStateContext();
   return (
     <div className="preview">
       <button

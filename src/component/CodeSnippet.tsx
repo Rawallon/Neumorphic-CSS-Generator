@@ -1,23 +1,11 @@
 import React from 'react';
+import { useStateContext } from '../StateContext';
 import { createShades } from '../utils';
 
-interface CodeSnippetProps {
-  borderRadius: number;
-  style: number;
-  selectedColor: string;
-  intensity: number;
-  blur: number;
-  distance: number;
-}
+export default function CodeSnippet() {
+  const { borderRadius, distance, intensity, blur, selectedColor, style } =
+    useStateContext();
 
-export default function CodeSnippet({
-  borderRadius,
-  style,
-  selectedColor,
-  intensity,
-  blur,
-  distance,
-}: CodeSnippetProps) {
   function bgColor(style: number): string {
     switch (style) {
       default:

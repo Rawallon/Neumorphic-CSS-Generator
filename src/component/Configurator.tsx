@@ -1,88 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  createShades,
-  getColorVariations,
-  getFontColor,
-  getShadowSide,
-  isValidColor,
-} from '../utils';
+import React, { useEffect, useRef } from 'react';
 import { MemoStyleSwitcher } from './StyleSwitcher';
 import { MemoCodeSnippet } from './CodeSnippet';
 import { MemoSlider } from './Slider';
+import { useStateContext } from '../StateContext';
 
-interface Props {
-  angle: number;
-  style: number;
-  setStyle: (value: number) => void;
-}
-export function Configurator({ angle, style, setStyle }: Props) {
+export function Configurator() {
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [size, setSize] = useState(300);
-  const [borderRadius, setBorderRadius] = useState(50);
-  const [distance, setDistance] = useState(20);
-  const [intensity, setIntensity] = useState(0.15);
-  const [blur, setBlur] = useState(60);
-  const [selectedColor, setSelectedColor] = useState('#efeeee');
-
-  useEffect(() => {
-    inputRef.current.value = selectedColor;
-    const { selectedTop, selectedBottom } = getColorVariations(
-      selectedColor,
-      style,
-    );
-
-    const {
-      positionX,
-      positionY,
-      positionXOpposite,
-      positionYOpposite,
-      angleDeg,
-    } = getShadowSide(distance, angle);
-    document.documentElement.style.cssText = `
-    --selectedColor: ${selectedColor};
-    --selectedColorTop: ${selectedTop};
-    --selectedColorBottom: ${selectedBottom};
-    --blur: ${blur}px;
-    --angle: ${angleDeg};
-    --positionX: ${positionX}px;
-    --positionY: ${positionY}px;
-    --positionXOpposite: ${positionXOpposite}px;
-    --positionYOpposite: ${positionYOpposite}px;
-    --size: ${size}px;
-    --radius:${borderRadius}px;
-    --shadowLight: ${createShades(selectedColor, intensity)};
-    --shadowDark: ${createShades(selectedColor, intensity * -1)};
-    --accentPrimary: ${createShades(selectedColor, (intensity - 0.7) * -1)};
-    --accentSecondary: ${createShades(selectedColor, intensity - 0.15)};
-    --fontColor: ${getFontColor(selectedColor)} 
-    `;
-  }, [
-    selectedColor,
-    distance,
-    intensity,
-    blur,
-    style,
+  const {
     size,
+    setSize,
     borderRadius,
-    angle,
-    inputRef,
-  ]);
+    setBorderRadius,
+    distance,
+    setDistance,
+    intensity,
+    setIntensity,
+    blur,
+    setBlur,
+    selectedColor,
+    setSelectedColor,
+  } = useStateContext();
 
-  function setBgHandler(color: string) {
-    if (isValidColor(color)) {
-      setSelectedColor(color);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = selectedColor;
     }
-  }
-
-  useEffect(() => {
-    let nDist = distance * 2;
-    if (nDist >= 5 && nDist <= 50) setBlur(nDist);
-  }, [distance, setBlur]);
-
-  useEffect(() => {
-    let nSize = Math.floor(size / 10);
-    if (nSize >= 5 && nSize <= 50) setDistance(nSize);
-  }, [size, setDistance]);
+  }, [inputRef, selectedColor]);
 
   return (
     <div className="configurator">
@@ -94,13 +37,13 @@ export function Configurator({ angle, style, setStyle }: Props) {
           id="head"
           name="head"
           value={selectedColor}
-          onChange={(e) => setBgHandler(e.target.value)}></input>
+          onChange={(e) => setSelectedColor(e.target.value)}></input>
         <input
           type="text"
           id="head"
           name="head"
           ref={inputRef}
-          onChange={(e) => setBgHandler(e.target.value)}></input>
+          onChange={(e) => setSelectedColor(e.target.value)}></input>
       </div>
       <div className="row">
         <MemoSlider
@@ -150,16 +93,9 @@ export function Configurator({ angle, style, setStyle }: Props) {
         />
       </div>
 
-      <MemoStyleSwitcher style={style} setStyle={setStyle} />
+      <MemoStyleSwitcher />
 
-      <MemoCodeSnippet
-        borderRadius={borderRadius}
-        style={style}
-        selectedColor={selectedColor}
-        intensity={intensity}
-        blur={blur}
-        distance={distance}
-      />
+      <MemoCodeSnippet />
     </div>
   );
 }

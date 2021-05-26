@@ -1,9 +1,8 @@
 import React from 'react';
-interface StyleSwitcherProps {
-  style: number;
-  setStyle: (param: number) => void;
-}
-export default function StyleSwitcher({ style, setStyle }: StyleSwitcherProps) {
+import { useStateContext } from '../StateContext';
+
+export default function StyleSwitcher() {
+  const { style, setStyle } = useStateContext();
   return (
     <div className="row">
       <div className="style-switch">
