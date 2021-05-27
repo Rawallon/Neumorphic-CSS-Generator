@@ -52,11 +52,16 @@ export function StateContextProvider({ children }: stateContextProviderProps) {
 
   function setSelectedColor(color: string) {
     if (isValidColor(color)) {
+      window.history.replaceState('', '', `/${color}`);
       setColorInState(color);
     }
   }
 
   useEffect(() => {
+    if (window.location.hash) {
+      setSelectedColor(window.location.hash);
+    }
+
     const { selectedTop, selectedBottom } = getColorVariations(
       selectedColor,
       style,
